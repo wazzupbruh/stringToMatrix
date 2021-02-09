@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+<script>
+let matrixSize = +prompt('Enter size of matrix'),
+	str = prompt('Enter some string').split(''),
+	word = prompt('Enter some word').split(''),
+	wordIndex = 0,
+	matrix = new Array(matrixSize);
+for(let i = 0; i < matrixSize;  i++){
+  matrix[i] = str.slice(matrixSize*i, matrixSize*(i+1));
+}
+let result = getCells(matrix, word, 0)
+
+function getCells(matrix, word, wordIndex){
+var result = [];
+for(var i = 0; i < matrix.length; i++) {
+	for(var j = 0; j < matrix.length; j++) {
+		if(matrix[i][j] === word[wordIndex]) {
+			result.push({row: i, column: j});
+			wordIndex++;
+		}
+	}
+}
+if(wordIndex < word.length){
+	result.concat(getCells(matrix, word, wordIndex++));
+}
+return result;
+}
+console.log(matrix);
+console.log(result);
+</script>
+</body>
+</html>
+
+
+
